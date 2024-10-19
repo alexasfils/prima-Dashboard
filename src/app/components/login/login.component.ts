@@ -1,10 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
+
+  constructor() {
+    
+  }
+  ngOnInit(): void {
+
+  }
+
+  onSubmit(form: NgForm) {
+    const email = form.value.email
+    const password = form.value.password
+
+    //chiamare authService
+    console.log(email, password);
+    form.reset();
+    }
 
 }
