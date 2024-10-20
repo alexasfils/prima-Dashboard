@@ -1,45 +1,41 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { FirebaseService } from '../../services/firebase.service';
 
-  export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-];
 @Component({
   selector: 'app-pagina1',
   templateUrl: './pagina1.component.html',
   styleUrl: './pagina1.component.css'
 })
   
-export class Pagina1Component {
-  
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'buttons'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+export class Pagina1Component implements OnInit{
+displayedColumns: string[] = ['no', 'name', 'weight', 'symbol', 'buttons'];
+   dataSource = new MatTableDataSource<any>([]);
+constructor(private firebaseService: FirebaseService){}
 
- onUpdate(element: PeriodicElement): void {
-    console.log('Updating element:', element);
+  ngOnInit(): void {
+
+    this.firebaseService.getElements()
+      .subscribe((data: any) => {
+        console.log(data)
+       const elementi  = Object.keys(data).map((key) => {
+          data[key]['id'] = key
+          return {id: key, ...data[key]}
+       })
+        this.dataSource.data = elementi; // Impostiamo i dati recuperati nel DataSource
+        console.log(this.dataSource.data)
+    })
+  }
+  
+ onUpdate(): void {
+    console.log('Updating element:');
     // Qui puoi aprire un dialog per modificare i dettagli della riga
   }
 
-  onDelete(element: PeriodicElement): void {
-    console.log('Deleting element:', element);
+  onDelete(): void {
+    console.log('Deleting element:');
     // Logica per cancellare l'elemento (per esempio rimuoverlo da dataSource)
-    this.dataSource.data = this.dataSource.data.filter(el => el.position !== element.position);
+    // this.dataSource.data = this.dataSource.data.filter(el => el.position !== element.position);
   }
 }
 

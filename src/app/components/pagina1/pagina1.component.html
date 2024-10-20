@@ -7,9 +7,9 @@
         The actual rendered columns are set as a property on the row definition" -->
 
         <!-- Position Column -->
-        <ng-container matColumnDef="position">
+        <ng-container matColumnDef="no">
             <th mat-header-cell *matHeaderCellDef> No. </th>
-            <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.no}} </td>
         </ng-container>
 
         <!-- Name Column -->
@@ -32,12 +32,10 @@
         <ng-container matColumnDef="buttons">
             <th mat-header-cell *matHeaderCellDef> Actions </th>
             <td mat-cell *matCellDef="let element">
-                <button mat-button color="primary" (click)="onUpdate(element)">Update</button>
-                <button mat-button color="warn" (click)="onDelete(element)">Delete</button>
+                <button mat-button color="primary" (click)="onUpdate()">Update</button>
+                <button mat-button color="warn" (click)="onDelete()">Delete</button>
             </td>
         </ng-container>
-
-
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
