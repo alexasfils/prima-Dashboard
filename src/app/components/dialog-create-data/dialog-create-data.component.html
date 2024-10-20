@@ -1,0 +1,23 @@
+<h2 mat-dialog-title>Add new Element</h2>
+<mat-dialog-content>
+    <mat-form-field appearance="fill">
+        <mat-label>No.</mat-label>
+        <input matInput [(ngModel)]="id" required />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput [(ngModel)]="name" required />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Weight</mat-label>
+        <input matInput [(ngModel)]="weignh" required />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Età</mat-label>
+        <input matInput type="text" [(ngModel)]="symbol" required />
+    </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button (click)="onCancel()">Annulla</button>
+    <button mat-button [mat-dialog-close]="{ id, name, weignh, symbol }" cdkFocusInitial>Aggiungi</button>
+</mat-dialog-actions>

@@ -19,8 +19,11 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
-import {MatTableModule} from '@angular/material/table';
-
+import { MatTableModule } from '@angular/material/table';
+import {MatDialogModule} from '@angular/material/dialog';
+import { HttpClientModule } from "@angular/common/http";
+import { DialogbuttonComponent } from './components/dialogbutton/dialogbutton.component';
+import { DialogCreateDataComponent } from './components/dialog-create-data/dialog-create-data.component';
 
 
 @NgModule({
@@ -31,7 +34,9 @@ import {MatTableModule} from '@angular/material/table';
     DashboardComponent,
     Pagina1Component,
     Pagina2Component,
-    Pagina3Component
+    Pagina3Component,
+    DialogbuttonComponent,
+    DialogCreateDataComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,7 +51,9 @@ import {MatTableModule} from '@angular/material/table';
     MatListModule,
     MatToolbarModule,
     MatIconModule,
-    MatTableModule
+    MatTableModule,
+    MatDialogModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap:[AppComponent]

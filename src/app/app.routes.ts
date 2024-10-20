@@ -16,7 +16,7 @@ export const routes: Routes = [
             {path:'pagina3', component: Pagina3Component}
     ]},
     { path: 'register', component: RegisterComponent },
-    { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent },
 ];
 
 

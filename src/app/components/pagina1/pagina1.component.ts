@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 
   export interface PeriodicElement {
   name: string;
@@ -27,8 +28,19 @@ const ELEMENT_DATA: PeriodicElement[] = [
   
 export class Pagina1Component {
   
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
+  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'buttons'];
+  dataSource = new MatTableDataSource(ELEMENT_DATA);
+
+ onUpdate(element: PeriodicElement): void {
+    console.log('Updating element:', element);
+    // Qui puoi aprire un dialog per modificare i dettagli della riga
+  }
+
+  onDelete(element: PeriodicElement): void {
+    console.log('Deleting element:', element);
+    // Logica per cancellare l'elemento (per esempio rimuoverlo da dataSource)
+    this.dataSource.data = this.dataSource.data.filter(el => el.position !== element.position);
+  }
 }
 
 
