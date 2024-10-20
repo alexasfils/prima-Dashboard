@@ -16,11 +16,11 @@ export class DialogbuttonComponent {
       width: '400px',
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        console.log('Persona aggiunta:', result);
-        // Qui puoi gestire la logica per aggiungere la persona alla tabella
-      }
-    });
+    // dialogRef.afterClosed().subscribe(result => {
+    //   if (result) {
+    //     console.log('Persona aggiunta:', result);
+    //     // Qui puoi gestire la logica per aggiungere la persona alla tabella
+    //   }
+    // });
   }
 }
